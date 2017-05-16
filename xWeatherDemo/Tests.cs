@@ -23,6 +23,7 @@ namespace xWeatherDemo
         public void BeforeEachTest()
         {
             app = AppInitializer.StartApp(platform);
+            app.Screenshot("App Launched");
         }
 
         [Test]
@@ -30,5 +31,13 @@ namespace xWeatherDemo
         {
             app.Repl();
         }
+
+        [Test]
+        public void CheckLasVegasWeather()
+        {
+            
+        }
+
+
     }
 }
