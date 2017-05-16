@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
@@ -35,7 +35,14 @@ namespace xWeatherDemo
         [Test]
         public void CheckLasVegasWeather()
         {
-            
+			app.Tap("floatingButton");
+			app.Screenshot("Let's start by Tapping on the 'Floating Action Button'");
+			app.Tap("Las Vegas");
+			app.Screenshot("Then we Tapped on 'Las Vegas'");
+			app.SwipeRightToLeft();
+			app.Screenshot("We Swiped Left to get weather summary");
+			app.ScrollDown();
+			app.Screenshot("Lastly, we scrolled down for more information");
         }
 
 
