@@ -1,9 +1,19 @@
 ﻿<Properties StartupConfiguration="{96565CFD-208A-452D-9F94-684DE4B34546}|Unit Tests">
   <MonoDevelop.Ide.ItemProperties.xWeatherDemo PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="xWeatherDemo/AppInitializer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="xWeatherDemo/Tests.cs">
     <Files>
-      <File FileName="xWeatherDemo/AppInitializer.cs" Line="1" Column="1" />
+      <File FileName="xWeatherDemo/AppInitializer.cs" Line="30" Column="6" />
+      <File FileName="xWeatherDemo/Tests.cs" Line="20" Column="10" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="xWeatherDemo" expanded="True" selected="True">
+            <Node name="xWeatherDemo" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

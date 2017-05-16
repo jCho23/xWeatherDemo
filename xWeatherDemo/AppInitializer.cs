@@ -25,10 +25,10 @@ namespace xWeatherDemo
             {
                 return ConfigureApp
                     .Android
-                    // TODO: Update this path to point to your Android app and uncomment the
-                    // code if the app is not included in the solution.
-                    //.ApkFile ("../../../Droid/bin/Debug/xamarinforms.apk")
-                    .StartApp();
+					// TODO: Update this path to point to your Android app and uncomment the
+					// code if the app is not included in the solution.
+					.ApkFile ("/Users/junecho/Desktop/XWeather.apk")
+					.StartApp();
             }
 
             return ConfigureApp
