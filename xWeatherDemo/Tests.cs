@@ -25,15 +25,15 @@ namespace xWeatherDemo
             app = AppInitializer.StartApp(platform);
             app.Screenshot("App Launched");
 			//PRO-TIP: This is an easy way to make sure that the app successfully launches before the tests begin
-
-
 		}
 
         [Test]
         public void Repl()
         {
             app.Repl();
-        }
+			//The REPL is a console-like environment in which the developer enters expressions or commands
+			//It will then evaluate those expressions, and display the results to the user
+		}
 
         [Test]
         public void CheckLasVegasWeather()
