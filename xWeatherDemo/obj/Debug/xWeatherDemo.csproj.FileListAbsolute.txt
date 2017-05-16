@@ -14,7 +14,6 @@
 /Users/junecho/Projects/xWeatherDemo/xWeatherDemo/bin/Debug/Xamarin.Forms.Xaml.pdb
 /Users/junecho/Projects/xWeatherDemo/xWeatherDemo/bin/Debug/Xamarin.Forms.Xaml.dll.mdb
 /Users/junecho/Projects/xWeatherDemo/xWeatherDemo/bin/Debug/Xamarin.Forms.Xaml.xml
-/Users/junecho/Projects/xWeatherDemo/xWeatherDemo/obj/Debug/xWeatherDemo.csprojResolveAssemblyReference.cache
 /Users/junecho/Projects/xWeatherDemo/xWeatherDemo/obj/Debug/xWeatherDemo.csproj.CoreCompileInputs.cache
 /Users/junecho/Projects/xWeatherDemo/xWeatherDemo/obj/Debug/xWeatherDemo.dll
 /Users/junecho/Projects/xWeatherDemo/xWeatherDemo/obj/Debug/xWeatherDemo.pdb
