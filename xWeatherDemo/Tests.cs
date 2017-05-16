@@ -31,7 +31,7 @@ namespace xWeatherDemo
         public void Repl()
         {
             app.Repl();
-			//The REPL is a console-like environment in which the developer enters expressions or commands
+			//PRO-TIP: The REPL is a console-like environment in which the developer enters expressions or commands
 			//It will then evaluate those expressions, and display the results to the user
 		}
 
