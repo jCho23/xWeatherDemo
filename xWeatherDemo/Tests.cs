@@ -24,7 +24,10 @@ namespace xWeatherDemo
         {
             app = AppInitializer.StartApp(platform);
             app.Screenshot("App Launched");
-        }
+			//PRO-TIP: This is an easy way to make sure that the app successfully launches before the tests begin
+
+
+		}
 
         [Test]
         public void Repl()
