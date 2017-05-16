@@ -37,7 +37,8 @@ namespace xWeatherDemo
 
         [Test]
         public void CheckLasVegasWeather()
-        {
+		//PRO-TIP: Naming conventions of tests should reflect a behavioral user action 
+		{
 			app.Tap("floatingButton");
 			app.Screenshot("Let's start by Tapping on the 'Floating Action Button'");
 			app.Tap("Las Vegas");
