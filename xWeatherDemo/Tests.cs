@@ -40,7 +40,9 @@ namespace xWeatherDemo
 		//PRO-TIP: Naming conventions of tests should reflect a behavioral user action 
 		{
 			app.Tap("floatingButton");
+            //PRO-TIP: Use Automation IDs (Xamarin.Forms), Content description (Android), Accessibility Identifiers (iOS) to 
 			app.Screenshot("Let's start by Tapping on the 'Floating Action Button'");
+			//PRO-TIP: Screenshots will enable to view the step definition in the Test Cloud portal 
 			app.Tap("Las Vegas");
 			app.Screenshot("Then we Tapped on 'Las Vegas'");
 			app.SwipeRightToLeft();
