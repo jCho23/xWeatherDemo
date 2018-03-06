@@ -2019,7 +2019,7 @@
             </member>
         <member name="M:Xamarin.UITest.iOS.iOSApp.ClearText">
              <summary>
-             Clears text from the currently focused element. 
+             Clears text from the currently focused element.
              </summary>
             </member>
         <member name="M:Xamarin.UITest.iOS.iOSApp.PressEnter">
@@ -2262,7 +2262,7 @@
              <param name="toX">The x coordinate to end at.</param>
              <param name="toY">The y coordinate to end at.</param>
             </member>
-        <member name="M:Xamarin.UITest.iOS.iOSApp.DragCoordinates(System.Single,System.Single,System.Single,System.Single,System.Nullable{System.TimeSpan})">
+        <member name="M:Xamarin.UITest.iOS.iOSApp.DragCoordinates(System.Single,System.Single,System.Single,System.Single,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
              <summary>
              Performs a continuous drag gesture between 2 points.
              </summary>
@@ -2270,7 +2270,8 @@
              <param name="fromY">The y coordinate to start from.</param>
              <param name="toX">The x coordinate to end at.</param>
              <param name="toY">The y coordinate to end at.</param>
-             <param name="duration">The <see cref="T:System.TimeSpan" /> duration of the pan gesture.</param>
+             <param name="duration">The <see cref="T:System.TimeSpan" /> duration of the pan gesture not including the hold time.</param>
+             <param name="holdTime">The <see cref="T:System.TimeSpan" /> duration to hold the initial press before starting the pan gesture.</param>
             </member>
         <member name="M:Xamarin.UITest.iOS.iOSApp.PinchToZoomIn(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.Nullable{System.TimeSpan})">
              <summary>
@@ -2843,13 +2844,14 @@
              <param name="from">Marked selector of the from element.</param>
              <param name="to">Marked selector of the to element.</param>
             </member>
-        <member name="M:Xamarin.UITest.iOS.iOSApp.DragAndDrop(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.Nullable{System.TimeSpan})">
+        <member name="M:Xamarin.UITest.iOS.iOSApp.DragAndDrop(System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.Func{Xamarin.UITest.Queries.AppQuery,Xamarin.UITest.Queries.AppQuery},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
              <summary>
              Drags the from element to the to element.
              </summary>
              <param name="from">Entry point for the fluent API to specify the from element.</param>
              <param name="to">Entry point for the fluent API to specify the to element.</param>
-             <param name="duration">The <see cref="T:System.TimeSpan" /> duration of the drag and drop gesture.</param>
+             <param name="duration">The <see cref="T:System.TimeSpan" /> duration of the pan gesture not including the hold time.</param>
+             <param name="holdTime">The <see cref="T:System.TimeSpan" /> duration to hold the initial press before starting the pan gesture.</param>
             </member>
         <member name="T:Xamarin.UITest.Configuration.iOSAppConfigurator">
              <summary>
@@ -2938,6 +2940,18 @@
              Configures the default wait times for the framework.
              </summary>
              <param name="waitTimes">An implementation providing defaults.</param>
+            </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.AutArguments(System.Collections.Generic.IEnumerable{System.String})">
+             <summary>
+             Sets the arguments to send to the AUT.
+             </summary>
+             <param name="arguments">A collection of string values to send to the AUT.</param>
+            </member>
+        <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.AutEnvironmentVars(System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+             Sets the environment to send to the AUT.
+             </summary>
+             <param name="environmentVars">A dictionary of environment variables to send to the AUT.</param>
             </member>
         <member name="M:Xamarin.UITest.Configuration.iOSAppConfigurator.CodesignIdentity(System.String)">
              <summary>
@@ -4565,6 +4579,16 @@
              Whether to disables automatic screenshot generation after each SpecFlow step.
              </summary>
             </member>
+        <member name="P:Xamarin.UITest.Configuration.IiOSAppConfiguration.AutArguments">
+             <summary>
+             Arguments to send to the AUT.
+             </summary>
+            </member>
+        <member name="P:Xamarin.UITest.Configuration.IiOSAppConfiguration.AutEnvironmentVars">
+             <summary>
+             Environment to send to the AUT.
+             </summary>
+            </member>
         <member name="M:Xamarin.UITest.Utils.Integration.IdeConnection.Connect(System.String,Xamarin.UITest.Platform)">
              <summary>
              Starts a connection with an IDE that may be ready to provide additional services for running a UITest session.
@@ -5365,14 +5389,14 @@
              <summary>
              Creates/replaces a container class registration with default options.
              </summary>
-             <typeparam name="RegisterImplementation">Type to register</typeparam>
+             <typeparam name="RegisterType">Type to register</typeparam>
              <returns>RegisterOptions for fluent API</returns>
             </member>
         <member name="M:TinyIoC.TinyIoCContainer.Register``1(System.String)">
              <summary>
              Creates/replaces a named container class registration with default options.
              </summary>
-             <typeparam name="RegisterImplementation">Type to register</typeparam>
+             <typeparam name="RegisterType">Type to register</typeparam>
              <param name="name">Name of registration</param>
              <returns>RegisterOptions for fluent API</returns>
             </member>
@@ -6309,6 +6333,134 @@
              A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
              hash table.
              </returns>
+            </member>
+        <member name="M:Xamarin.UITest.XDB.Services.OSX.iOSDeviceManagerService.EnsureXcodeSimQueriesAreSafe">
+             <summary>
+             Having switched Xcode versions, the first few usages of sim related commands will fail.
+             To work around this, we call `simctl help` until no message containing `CoreSimulator` is 
+             written to stderr.  The issue may be a problem with the Xcode 8 betas and this code may
+             become redundant with a later Xcode release.
+             </summary>
+            </member>
+        <member name="T:Xamarin.UITest.XDB.Services.Processes.ProcessResult">
+             <summary>
+             External process execution results.
+             </summary>
+            </member>
+        <member name="P:Xamarin.UITest.XDB.Services.Processes.ProcessResult.ExitCode">
+             <summary>
+             Process exit code.
+             </summary>
+            </member>
+        <member name="P:Xamarin.UITest.XDB.Services.Processes.ProcessResult.StandardOutput">
+             <summary>
+             Process standard output.
+             </summary>
+            </member>
+        <member name="P:Xamarin.UITest.XDB.Services.Processes.ProcessResult.StandardError">
+             <summary>
+             Process standard error.
+             </summary>
+            </member>
+        <member name="P:Xamarin.UITest.XDB.Services.Processes.ProcessResult.CombinedOutput">
+             <summary>
+             Process standard output and standard error
+             </summary>
+            </member>
+        <member name="T:Xamarin.UITest.XDB.Services.Processes.ProcessService">
+             <summary>
+             Default implementation of IProcessService. 
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.XDB.Services.Processes.ProcessService.RunAsync(System.String,System.String,System.Action{System.String},System.Action{System.String})">
+             <summary>
+             Runs the external command.
+             </summary>
+             <param name="command">Command to execute.</param>
+             <param name="arguments">(Optional) Command arguments.</param>
+             <param name="standardOutputCallback">
+             (Optional) An action that will be called with each standard output line written by the executed command.
+             </param>
+             <param name="standardErrorCallback">
+             (Optional) An action that will be called with each standard error line wrote by the executed command.
+             </param>
+            </member>
+        <member name="M:Xamarin.UITest.XDB.Services.Processes.ProcessService.Run(System.String,System.String)">
+             <summary>
+             Runs the external command.
+             </summary>
+             <param name="command">Command to execute.</param>
+             <param name="arguments">(Optional) Command arguments.</param>
+            </member>
+        <member name="T:Xamarin.UITest.Helpers.IEnvironmentVariableHelper">
+             <summary>
+             Helper class for handling Environment Variables to aid testability.
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.Helpers.IEnvironmentVariableHelper.GetEnvironmentVariable(System.String)">
+             <summary>
+             Gets an environment variable from the system.
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.Helpers.IEnvironmentVariableHelper.GetEnvironmentVariables">
+             <summary>
+             Gets all environment variables from the system.
+             </summary>
+            </member>
+        <member name="T:Xamarin.UITest.Helpers.IEnvironmentVariableForwardingHelper">
+             <summary>
+             Helper class for handling Environment Variable Forwarding.
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.Helpers.IEnvironmentVariableForwardingHelper.GetVariable(System.String)">
+             <summary>
+             Gets the specified environment variable.
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.Helpers.IEnvironmentVariableForwardingHelper.MergeAutEnvironmentVariables(System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+             Merges the user specified environment variables with the system defined environment variables for the AUT.
+             </summary>
+            </member>
+        <member name="T:Xamarin.UITest.Helpers.EnvironmentVariableForwardingHelper">
+             <summary>
+             Helper class for handling Environment Variable Forwarding.
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.Helpers.EnvironmentVariableForwardingHelper.#ctor">
+             <summary>
+             Helper class for handling Environment Variable Forwarding.
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.Helpers.EnvironmentVariableForwardingHelper.#ctor(Xamarin.UITest.Helpers.IEnvironmentVariableHelper)">
+             <summary>
+             Helper class for handling Environment Variable Forwarding.
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.Helpers.EnvironmentVariableForwardingHelper.GetVariable(System.String)">
+             <summary>
+             Gets the specified environment variable.
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.Helpers.EnvironmentVariableForwardingHelper.MergeAutEnvironmentVariables(System.Collections.Generic.Dictionary{System.String,System.String})">
+             <summary>
+             Merges the user specified environment variables with the system defined environment variables for the AUT.
+             </summary>
+            </member>
+        <member name="T:Xamarin.UITest.Helpers.EnvironmentVariableHelper">
+             <summary>
+             Helper class for handling Environment Variables to aid testability.
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.Helpers.EnvironmentVariableHelper.GetEnvironmentVariable(System.String)">
+             <summary>
+             Gets an environment variable from the system.
+             </summary>
+            </member>
+        <member name="M:Xamarin.UITest.Helpers.EnvironmentVariableHelper.GetEnvironmentVariables">
+             <summary>
+             Gets all environment variables from the system.
+             </summary>
             </member>
     </members>
 </doc>
